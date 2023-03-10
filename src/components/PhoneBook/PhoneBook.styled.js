@@ -20,3 +20,11 @@ export const ContactTitle = styled.h2`
   text-align: center;
   margin-bottom: 30px;
 `;
+export const ContactList = styled.p`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  font-size: 16px;
+  background-color: white;
+`;

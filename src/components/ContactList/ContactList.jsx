@@ -2,21 +2,17 @@ import PropTypes from 'prop-types';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { ContactWrapper } from './ContactList.styled';
 
-export function ContactList({ contacts, deleteContact }) {
+export function ContactList({ contacts }) {
   return (
     <ContactWrapper>
       <ul>
-        {contacts.length ? (
-          contacts.map(contact => (
-            <ContactItem
-              key={contact.id}
-              contact={contact}
-              deleteContact={() => deleteContact(contact.id)}
-            />
-          ))
-        ) : (
-          <p>There are no contacts yet.</p>
-        )}
+        {contacts.map(({ id, contact, deleteContact }) => (
+          <ContactItem
+            key={id}
+            contact={contact}
+            deleteContact={() => deleteContact(id)}
+          />
+        ))}
       </ul>
     </ContactWrapper>
   );

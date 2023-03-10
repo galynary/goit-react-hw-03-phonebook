@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const ContactWrapper = styled.div`
+export const MessageWraper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;

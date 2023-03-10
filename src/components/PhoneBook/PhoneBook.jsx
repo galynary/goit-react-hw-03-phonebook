@@ -2,6 +2,7 @@ import React from 'react';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
+import { Message } from 'components/Message/Message';
 import { Wrapper, Title, ContactTitle } from './PhoneBook.styled';
 
 export class PhoneBook extends React.Component {
@@ -63,11 +64,16 @@ export class PhoneBook extends React.Component {
         {this.state.contacts.length !== 0 && (
           <Filter value={this.state.filter} onChange={this.findContact} />
         )}
-
-        <ContactList
-          contacts={this.filterContacts()}
-          deleteContact={this.deleteContact}
-        />
+        {this.state.contacts.length > 0 ? (
+          <ContactList
+            contacts={this.filterContacts()}
+            deleteContact={this.deleteContact}
+          />
+        ) : (
+          <>
+            <p>There are no contacts yet.</p>
+          </>
+        )}
       </Wrapper>
     );
   }
