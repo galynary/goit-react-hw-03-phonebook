@@ -5,5 +5,6 @@ export const MessageWraper = styled.div`
   gap: 20px;
   padding: 20px;
   font-size: 16px;
+  color: #000;
   background-color: white;
 `;

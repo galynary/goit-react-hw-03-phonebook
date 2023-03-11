@@ -1,10 +1,10 @@
 import propTypes from 'prop-types';
 import { MessageWraper } from './Message.styled';
-export function Message({ text }) {
+export function Message({ message }) {
   return (
     <MessageWraper>
-      <p message="There are no contacts yet."></p>
+      <p>{message}</p>
     </MessageWraper>
   );
 }
-Message.propTypes = { text: propTypes.string.isRequired };
+Message.propTypes = { message: propTypes.string };

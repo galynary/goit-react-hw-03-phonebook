@@ -70,9 +70,7 @@ export class PhoneBook extends React.Component {
             deleteContact={this.deleteContact}
           />
         ) : (
-          <>
-            <p>There are no contacts yet.</p>
-          </>
+          <Message message="There are no contacts yet." />
         )}
       </Wrapper>
     );
