@@ -6,6 +6,7 @@ export const Item = styled.li`
   justify-content: space-between;
   width: 100%;
   gap: 20px;
+  color: #334444;
 `;
 
 export const NameItem = styled.div`
@@ -14,6 +15,7 @@ export const NameItem = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 10px;
+  color: #334444;
 `;
 
 export const Button = styled.button`

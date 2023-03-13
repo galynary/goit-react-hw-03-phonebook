@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   padding: 20px;
   margin-top: 100px;
   background-color: #e7e9e796;
+  color: #232323;
 `;
 
 export const Title = styled.h1`
@@ -23,8 +24,9 @@ export const ContactTitle = styled.h2`
 export const ContactList = styled.p`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
   padding: 20px;
   font-size: 16px;
   background-color: white;
+  color: #232323;
 `;

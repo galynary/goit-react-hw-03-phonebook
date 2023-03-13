@@ -6,4 +6,5 @@ export const ContactWrapper = styled.div`
   padding: 20px;
   font-size: 16px;
   background-color: white;
+  color: #233333;
 `;

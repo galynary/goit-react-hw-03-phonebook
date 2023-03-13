@@ -10,7 +10,7 @@ export function ContactList({ contacts }) {
           <ContactItem
             key={id}
             contact={contact}
-            deleteContact={() => deleteContact(id)}
+            deleteContact={() => deleteContact}
           />
         ))}
       </ul>
