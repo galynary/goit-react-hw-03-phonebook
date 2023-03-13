@@ -24,18 +24,16 @@ export class PhoneBook extends React.Component {
     }
   }
 
-  addContact = contact => {
-    if (
-      !this.state.contacts.find(
-        ({ name }) => name.toLocaleLowerCase() === contact.name.toLowerCase()
-      )
-    ) {
-      this.setState(({ contacts }) => ({
-        contacts: [...contacts, contact],
-      }));
-    } else {
-      alert(`${contact.name} is already in contacts.`);
-    }
+  addContact = ({ name, number }, numberId) => {
+    console.log({ name, number }); // data
+    const addContact = {
+      id: numberId,
+      name,
+      number,
+    };
+    this.setState(prevState => ({
+      contacts: [addContact, ...prevState.contacts],
+    }));
   };
 
   filterContacts = () => {
@@ -45,8 +43,8 @@ export class PhoneBook extends React.Component {
   };
 
   deleteContact = contactId => {
-    this.setState(({ contacts }) => ({
-      contacts: contacts.filter(({ id }) => id !== contactId),
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== contactId),
     }));
   };
 
