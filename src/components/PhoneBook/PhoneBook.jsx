@@ -2,7 +2,6 @@ import React from 'react';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Message } from 'components/Message/Message';
 import { Wrapper, Title, ContactTitle } from './PhoneBook.styled';
 
 export class PhoneBook extends React.Component {
@@ -18,22 +17,24 @@ export class PhoneBook extends React.Component {
     }
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
 
-  addContact = ({ name, number }, numberId) => {
-    console.log({ name, number });
-    const addContact = {
-      id: numberId,
-      name,
-      number,
-    };
-    this.setState(prevState => ({
-      contacts: [addContact, ...prevState.contacts],
-    }));
+  addContact = contact => {
+    if (
+      !this.state.contacts.find(
+        ({ name }) => name.toLocaleLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      this.setState(({ contacts }) => ({
+        contacts: [...contacts, contact],
+      }));
+    } else {
+      alert(`${contact.name} is already in contacts.`);
+    }
   };
 
   filterContacts = () => {
@@ -44,7 +45,7 @@ export class PhoneBook extends React.Component {
 
   deleteContact = contactId => {
     this.setState(({ contacts }) => ({
-      contacts: contacts.filter(contact => contact.id !== contactId),
+      contacts: contacts.filter(({ id }) => id !== contactId),
     }));
   };
 
@@ -68,7 +69,7 @@ export class PhoneBook extends React.Component {
             deleteContact={this.deleteContact}
           />
         ) : (
-          <Message message="There are no contacts yet." />
+          <p>There are no contacts yet.</p>
         )}
       </Wrapper>
     );

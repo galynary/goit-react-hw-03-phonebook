@@ -1,48 +1,30 @@
 import React from 'react';
-
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { Form, Label, Input, Button } from './ContactForm.styled';
-export class ContactForm extends React.Component {
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
 
+export class ContactForm extends React.Component {
   state = {
     name: '',
     number: '',
   };
 
-  handleChange = e => {
-    this.setState({
-      [e.currentTarget.name]: e.currentTarget.value,
-    });
+  handleChange = ({ currentTarget: { name, value } }) => {
+    this.setState({ [name]: value });
   };
 
-  hendleSubmit = e => {
+  handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
 
-    const { name, number } = this.state;
-    const { contacts } = this.props;
-    if (contacts.find(item => item.name === name)) {
-      alert(`${name} is already in contacts.`);
-      return;
-    } else if (contacts.find(item => item.number === number)) {
-      alert(`${number} is already in contacts.`);
-      return;
-    } else if (!/\d{3}[-]\d{2}[-]\d{2}/g.test(number)) {
-      alert('Enter the correct number phone!');
-      return;
-    }
+    const newContact = {
+      id: nanoid(),
+      name: this.state.name,
+      number: this.state.number,
+    };
 
-    this.props.onSubmit({ name, number });
-    this.resetForm();
-  };
-  resetForm = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
+    this.props.handleSubmit(newContact);
+
+    this.setState({ name: '', number: '' });
   };
 
   render() {
