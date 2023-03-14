@@ -18,14 +18,14 @@ export class PhoneBook extends React.Component {
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_, prevState) {
     if (this.state.contacts !== prevState.contacts) {
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
 
   addContact = ({ name, number }, numberId) => {
-    console.log({ name, number }); // data
+    console.log({ name, number });
     const addContact = {
       id: numberId,
       name,
@@ -43,8 +43,8 @@ export class PhoneBook extends React.Component {
   };
 
   deleteContact = contactId => {
-    this.setState(prevState => ({
-      contacts: prevState.contacts.filter(item => item.id !== contactId),
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
